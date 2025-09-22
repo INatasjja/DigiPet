@@ -56,7 +56,8 @@ public class Digipet
         Hunger = 5;
         Happiness = 5;
         Health = 5;
-        DisplayStats();
+
+
 
         void DisplayStats()
         {
@@ -65,6 +66,15 @@ public class Digipet
             Console.WriteLine(PetName + "'s health level is:" + Health);
             Console.WriteLine(PetName + "'s hunger level is:" + Hunger+"\n");
         }
+
+        void PastOfTime()
+
+        {
+            time = time.AddMinutes(60);
+            Hunger = Hunger + TinyIncrease;
+            Happiness= Happiness - TinyIncrease;
+        }
+
         void MainMenu(string PetName)
         {
             int MenuChoice = 0;
@@ -75,20 +85,22 @@ public class Digipet
                 Console.WriteLine("1 - Feed " + PetName);
                 Console.WriteLine("2 - Play with " + PetName);
                 Console.WriteLine("3 - Take " + PetName + " to bed");
-                Console.WriteLine("4 - Close game");
+                Console.WriteLine("4 - Check"+PetName+"'s stats");
+                Console.WriteLine("5 - Close game");
                 
                 if (!int.TryParse(Console.ReadLine(),out MenuChoice))
                 {
-                    Console.WriteLine("Please insert a value from 1 to 4");
+                    Console.WriteLine("Please insert a value from 1 to 5");
                     continue;
                 }
-      
-                if (MenuChoice >=1 && MenuChoice <= 4)
+     
+                if (MenuChoice >=1 && MenuChoice <= 5)
                 {
-                    // stats range validation
+                    // stats range validation and messages
                     if (Hunger == 10)
                     {
                         Console.WriteLine("Oh no!!! " + PetName + " seems to not be doing well. \nHe has been removed from your care");
+                        return;
                     }
                     else if (Hunger >= 8 && Hunger <= 9)
                     {
@@ -99,9 +111,10 @@ public class Digipet
                         Console.WriteLine(PetName + " Is satisfied, he couldn't eat more even if it wanted to!");
                     }
 
-                    if (Happiness <= 1)
+                    if (Happiness == 1)
                     {
-                        Console.WriteLine("Oh no!!! " + PetName + " seems to not be doing well. He has been removed from your care");
+                        Console.WriteLine("Oh no!!! " + PetName + " seems to not be doing well. \nHe has been removed from your care");
+                        return;
                     }
                     else if (Happiness >= 2 && Happiness <= 3)
                     {
@@ -112,9 +125,10 @@ public class Digipet
                         Console.WriteLine(PetName + " Couldn't be more happy!");
                     }
 
-                    if (Health <= 1)
+                    if (Health == 1)
                     {
-                        Console.WriteLine("Oh no!!! " + PetName + " seems to not be doing well. He has been removed from your care");
+                        Console.WriteLine("Oh no!!! " + PetName + " seems to not be doing well.\n He has been removed from your care");
+                        return;
                     }
                     else if (Health >= 2 && Health <= 3)
                     {
@@ -132,9 +146,14 @@ public class Digipet
                         {
                             Hunger = Hunger - 1;
                             Health = Health + TinyIncrease;
-                            time = time.AddMinutes(60);
+                            PastOfTime();
+                            if (Hunger < 1) Hunger = 1;
+                            if (Hunger > 10) Hunger = 10;
+                            if (Health < 1) Health = 1;
+                            if (Health > 10) Health = 10;
                         }
-                     
+                        Console.WriteLine("\nYou have feed " + PetName + "." +
+                                   "\n" + PetName + "'s hunger level have decreased and its health has sligtly increased.");
                     }
                     else if (MenuChoice == 2)
                     {
@@ -142,8 +161,15 @@ public class Digipet
                         {
                             Happiness = Happiness + 1;
                             Hunger = Hunger + TinyIncrease;
-                            time = time.AddMinutes(60);
+                            PastOfTime();
+
+                            if (Hunger < 1 )Hunger = 1;
+                            if (Hunger > 10) Hunger = 10;
+                            if (Happiness < 1) Happiness = 1;
+                            if (Happiness > 10) Happiness = 10;
                         }
+                        Console.WriteLine("\nYou have played with " + PetName + "." +
+                                "\n" + PetName + "'s happiness level have increased but this activity increases sligtly its hunger.");
                     }
                     else if (MenuChoice == 3)
                     {
@@ -151,15 +177,25 @@ public class Digipet
                         {
                             Health = Health + 1;
                             Happiness = Happiness - TinyIncrease;
-                            time = time.AddMinutes(60);
+                            PastOfTime();
+                            if (Health < 1) Health = 1;
+                            if (Health > 10) Health = 10;
+                            if (Happiness < 1) Happiness = 1;
+                            if (Happiness > 10) Happiness = 10;
                         }
+                        Console.WriteLine("\n"+PetName + "Has gone to sleep" +
+                                "\n" + PetName + "'s health levels have increased but its happiness has sligtly decreased.");
                     }
                     else if (MenuChoice == 4)
+                    {
+                        DisplayStats();
+                    }
+                    else if (MenuChoice == 5)
                     {
                         Console.WriteLine("Thank you for playing!");
                         break;
                     }
-                    DisplayStats();
+                    
                 }
                 else
                 {
