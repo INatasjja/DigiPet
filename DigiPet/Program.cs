@@ -51,14 +51,13 @@ public class Digipet
         Console.WriteLine("\nYour new " + PetArray[petType - 1] + "'s name is: " + PetName+"\n");
         Console.WriteLine(PetName + " looks so happy to finally have a home, please make sure to check your " + PetArray[petType - 1] + "'s needs are meet.\n");
 
-        //Menu
-
+        //STATS BASE VALUES
         Hunger = 5;
         Happiness = 5;
         Health = 5;
 
 
-
+        //Stats section
         void DisplayStats()
         {
             Console.WriteLine("\nIs " + time.ToString() + " and:");
@@ -67,6 +66,7 @@ public class Digipet
             Console.WriteLine(PetName + "'s hunger level is:" + Hunger+"\n");
         }
 
+        //Adding 60mins per action affecting hunger and happiness
         void PastOfTime()
 
         {
@@ -75,6 +75,7 @@ public class Digipet
             Happiness= Happiness - TinyIncrease;
         }
 
+        //Menu
         void MainMenu(string PetName)
         {
             int MenuChoice = 0;
@@ -85,7 +86,7 @@ public class Digipet
                 Console.WriteLine("1 - Feed " + PetName);
                 Console.WriteLine("2 - Play with " + PetName);
                 Console.WriteLine("3 - Take " + PetName + " to bed");
-                Console.WriteLine("4 - Check"+PetName+"'s stats");
+                Console.WriteLine("4 - Check "+PetName+"'s stats");
                 Console.WriteLine("5 - Close game");
                 
                 if (!int.TryParse(Console.ReadLine(),out MenuChoice))
@@ -104,7 +105,7 @@ public class Digipet
                     }
                     else if (Hunger >= 8 && Hunger <= 9)
                     {
-                        Console.WriteLine(PetName + " Is REALLY hungry, Please feed right away");
+                        Console.WriteLine(PetName + " Is REALLY hungry, Please feed right away!!!!!!!!!!!");
                     }
                     else if (Hunger <= 1)
                     {
@@ -118,11 +119,11 @@ public class Digipet
                     }
                     else if (Happiness >= 2 && Happiness <= 3)
                     {
-                        Console.WriteLine(PetName + " Is feeling LONELY. \n Please play with"+ PetName);
+                        Console.WriteLine(PetName + " Is feeling LONELY. \n Please play with "+ PetName+"!!!!!!!!!!");
                     }
                     else if (Happiness >= 10)
                     {
-                        Console.WriteLine(PetName + " Couldn't be more happy!");
+                        Console.WriteLine(PetName + " Loves playing with you, just Couldn't be more happy!");
                     }
 
                     if (Health == 1)
@@ -132,11 +133,11 @@ public class Digipet
                     }
                     else if (Health >= 2 && Health <= 3)
                     {
-                        Console.WriteLine(PetName + " Is getting SICK, let it rest");
+                        Console.WriteLine(PetName + " Is getting SICK, let it rest!!!!!!!!!!!!!");
                     }
                     else if (Health == 10)
                     {
-                        Console.WriteLine(PetName + " Is thriving in your care!");
+                        Console.WriteLine(PetName + "'s health is at MAX " + PetName +"'s thriving in your care!");
                     }
 
 
@@ -152,8 +153,8 @@ public class Digipet
                             if (Health < 1) Health = 1;
                             if (Health > 10) Health = 10;
                         }
-                        Console.WriteLine("\nYou have feed " + PetName + "." +
-                                   "\n" + PetName + "'s hunger level have decreased and its health has sligtly increased.");
+                        Console.WriteLine("\nYou have fed " + PetName + "." +
+                                   "\n" + PetName + "'s hunger level have decreased and its health has slightly increased.");
                     }
                     else if (MenuChoice == 2)
                     {
@@ -169,7 +170,7 @@ public class Digipet
                             if (Happiness > 10) Happiness = 10;
                         }
                         Console.WriteLine("\nYou have played with " + PetName + "." +
-                                "\n" + PetName + "'s happiness level have increased but this activity increases sligtly its hunger.");
+                                "\n" + PetName + "'s happiness level have increased but this activity increases slightly its hunger.");
                     }
                     else if (MenuChoice == 3)
                     {
@@ -183,8 +184,8 @@ public class Digipet
                             if (Happiness < 1) Happiness = 1;
                             if (Happiness > 10) Happiness = 10;
                         }
-                        Console.WriteLine("\n"+PetName + "Has gone to sleep" +
-                                "\n" + PetName + "'s health levels have increased but its happiness has sligtly decreased.");
+                        Console.WriteLine("\n"+PetName + " Has gone to sleep" +
+                                "\n" + PetName + "'s health levels have increased but its happiness has slightly decreased.");
                     }
                     else if (MenuChoice == 4)
                     {
