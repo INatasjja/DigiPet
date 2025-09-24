@@ -30,7 +30,12 @@ public class Digipet
 
         while (true)
         {
-            petType = Convert.ToInt32(Console.ReadLine());
+
+            if (!int.TryParse(Console.ReadLine(), out petType))
+            {
+                Console.WriteLine("Please insert a numeric value from 1 to "+ PetArray.Length);
+                continue;
+            }
 
             if (petType > 0 && petType <= PetArray.Length)
             {
@@ -38,7 +43,6 @@ public class Digipet
                 time = time.AddMinutes(60);
                 break;
             }
-
             else
             {
                 Console.WriteLine("Insert a value between 1 and " + PetArray.Length);
