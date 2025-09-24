@@ -144,6 +144,16 @@ public class Digipet
                         Console.WriteLine(PetName + "'s health is at MAX " + PetName +"'s thriving in your care!");
                     }
 
+                    //Define limits
+                    void LimitsDefinition()
+                    {
+                        if (Hunger < 1) Hunger = 1;
+                        if (Hunger > 10) Hunger = 10;
+                        if (Health < 1) Health = 1;
+                        if (Health > 10) Health = 10;
+                        if (Happiness < 1) Happiness = 1;
+                        if (Happiness > 10) Happiness = 10;
+                    }
 
                     if (MenuChoice == 1)
                     {
@@ -152,10 +162,8 @@ public class Digipet
                             Hunger = Hunger - 1;
                             Health = Health + TinyIncrease;
                             PastOfTime();
-                            if (Hunger < 1) Hunger = 1;
-                            if (Hunger > 10) Hunger = 10;
-                            if (Health < 1) Health = 1;
-                            if (Health > 10) Health = 10;
+                            LimitsDefinition();
+
                         }
                         Console.WriteLine("\nYou have fed " + PetName + "." +
                                    "\n" + PetName + "'s hunger level have decreased and its health has slightly increased.");
@@ -167,11 +175,7 @@ public class Digipet
                             Happiness = Happiness + 1;
                             Hunger = Hunger + TinyIncrease;
                             PastOfTime();
-
-                            if (Hunger < 1 )Hunger = 1;
-                            if (Hunger > 10) Hunger = 10;
-                            if (Happiness < 1) Happiness = 1;
-                            if (Happiness > 10) Happiness = 10;
+                            LimitsDefinition();
                         }
                         Console.WriteLine("\nYou have played with " + PetName + "." +
                                 "\n" + PetName + "'s happiness level have increased but this activity increases slightly its hunger.");
@@ -183,10 +187,8 @@ public class Digipet
                             Health = Health + 1;
                             Happiness = Happiness - TinyIncrease;
                             PastOfTime();
-                            if (Health < 1) Health = 1;
-                            if (Health > 10) Health = 10;
-                            if (Happiness < 1) Happiness = 1;
-                            if (Happiness > 10) Happiness = 10;
+                            LimitsDefinition();
+
                         }
                         Console.WriteLine("\n"+PetName + " Has gone to sleep" +
                                 "\n" + PetName + "'s health levels have increased but its happiness has slightly decreased.");
